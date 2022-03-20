@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block letters %}
+    <div class="divimg">
+        <img src="{{ url_for('static', filename='susie-dent.jpg') }}" alt="Susie Dent">
+    </div>
+    <div class="divtext">
+        <form method="post">
+            <label for="vowels" class="button">Vowels</label>
+            <input type="number" name="vowels" id="vowels" class="button">
+            <label for="consonants" class="button">Consonants</label>
+            <input type="number" name="consonants" id="consonants" class="button">
+            <input type="submit" name="generate" value="Get Letters" class="button">
+            <input type="submit" name="solution_letters" value="Show Longest Words" class="button">
+        </form>
+        <h2>SELECTED LETTERS: <span class="highlight">{{ letters }}</span></h2>
+        <h2>LONGEST WORDS:</h2>
+        <h2><span class="highlight">{{ word1 }}</span></h2>
+        <h2><span class="highlight">{{ word2 }}</span></h2>
+        <h2><span class="highlight">{{ word3 }}</span></h2>
+    </div>
+{% endblock %}
+
+{% block numbers %}
+    <div class="divimg">
+        <img src="{{ url_for('static', filename='rachel-riley.png') }}" alt="Rachel Riley">
+    </div>
+    <div class="divtext">
+        <form method="post">
+            <input type="submit" name="one_big" value="One Big" class="button">
+            <input type="submit" name="two_big" value="Two Big" class="button">
+            <input type="submit" name="three_big" value="Three Big" class="button">
+            <input type="submit" name="four_big" value="Four Big" class="button">
+            <input type="submit" name="six_small" value="Six Small" class="button">
+            <input type="submit" name="target" value="Set Target" class="button">
+            <input type="submit" name="solution_numbers" value="Get Solution" class="button">
+        </form>
+        <h2>SELECTED NUMBERS: <span class="highlight">{{ numbers }}</span></h2>
+        <h2>TARGET: <span class="highlight">{{ target }}</span></h2>
+        <h2>SOLUTION: <span class="highlight">{{ solution }}</span></h2>
+    </div>
+{% endblock %}
+
+{% block timer %}
+<div class="divimg">
+    <img src="{{ url_for('static', filename='jimmy-carr.jpg') }}" alt="Jimmy Carr">
+</div>
+<div class="divtext">
+    <h2 id="remaining_seconds">30s</h2>
+    <input id="start_countdown" type="submit" value="Start Countdown" class="button" onclick="start_countdown();play();"/>
+    <audio id="audio" src="{{ url_for('static', filename='countdown_audio.mp3') }}"></audio>
+</div>
+<script>
+function start_countdown(){
+    var target = new Date().getTime() + 30000;
+    var x = setInterval(function() {
+        var now = new Date().getTime();
+        var distance = target - now;
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("remaining_seconds").innerHTML = seconds + "s";
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById("remaining_seconds").innerHTML = "0s";
+        }
+    }, 1000);
+}
+
+function play() {
+        var audio = document.getElementById("audio");
+        audio.play();
+}
+</script>
+{% endblock %}

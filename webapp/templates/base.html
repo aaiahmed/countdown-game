@@ -1,0 +1,22 @@
+<!doctype html>
+<title>{% block title %}{% endblock %} - Countdown</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+    <h1>LET'S PLAY COUNTDOWN!</h1>
+</nav>
+
+
+<section class="content">
+        <h2 class="subheader">TIMER</h2>
+    {% block timer %}{% endblock %}
+</section>
+
+<section class="content">
+        <h2 class="subheader">LETTERS GAME</h2>
+    {% block letters %}{% endblock %}
+</section>
+
+<section class="content">
+        <h2 class="subheader">NUMBERS GAME</h2>
+    {% block numbers %}{% endblock %}
+</section>
